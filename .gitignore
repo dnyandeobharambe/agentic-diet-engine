@@ -1,0 +1,33 @@
+# --- Environments ---
+.venv/
+venv/
+ENV/
+env/
+
+# --- Secrets & Private Config ---
+.env
+.env.local
+*.key
+*.pem
+
+# --- Python & Build Artifacts ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ipynb_checkpoints/
+build/
+dist/
+*.egg-info/
+
+# --- Docker & OS Junk ---
+.dockerignore
+*.log
+.DS_Store
+Thumbs.db
+
+# --- AI & Database Artifacts (CRITICAL FOR SYNC) ---
+chroma_db/
+data/*.pdf
+*.sqlite3
+*.bin

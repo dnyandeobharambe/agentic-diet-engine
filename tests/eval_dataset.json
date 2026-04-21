@@ -1,0 +1,10 @@
+[
+  {
+    "question": "What are the core ingredients for Huevos Motuleños?",
+    "min_faithfulness": 0.85
+  },
+  {
+    "question": "Give me a high-protein breakfast option from the cookbook.",
+    "min_faithfulness": 0.90
+  }
+]

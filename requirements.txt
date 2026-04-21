@@ -1,0 +1,51 @@
+# --- Core Environment & Configuration ---
+python-dotenv
+pydantic>=2.7.0               # Enhanced validation for 2026 RAG schemas
+
+# --- LLM Providers (The Brains) ---
+openai>=1.70.0                # Support for GPT-5.4/Gemini multimodal endpoints
+langchain-openai>=0.3.0       
+langchain-google-genai>=4.2.0  # MANDATORY for Gemini 3.1 & 2026 reasoning features
+langchain-core>=1.2.28        # Stable primitives for modern agents
+
+# --- Observability (The Eye) ---
+langsmith>=0.7.31           # Latest Fleet UI support for April 2026 tracing
+
+# --- Orchestration (The Nervous System) ---
+langchain>=1.2.15             # Core LCEL and Agent builders
+langchain-classic>=1.0.0      # Bridge for EnsembleRetriever (Maintained until Dec 2026)
+langgraph>=0.4.5              # Advanced stateful orchestration (v0.4+ for 2026)
+
+# --- RAG & Retrieval (The Memory) ---
+pypdf>=5.1.0
+chromadb>=0.5.0               # Support for 3072D vector indices (Gemini 2 Embeddings)
+langchain-community>=0.3.5
+langchain-chroma>=0.1.5
+rank_bm25                     # Required for Hybrid Search
+
+# --- Advanced Retrieval (The Filter) ---
+sentence-transformers         # Local Cross-Encoder Re-ranker
+flashrank>=0.2.0              # Highly recommended: Lightweight alternative for local reranking
+
+# --- Evaluation & Testing (The Quality Gate) ---
+pytest>=8.1.0                # Core testing framework
+pytest-asyncio>=0.23.0       # Required because RAG calls in 2026 are mostly async
+deepeval>=1.0.0              # For Faithfulness & Answer Relevancy
+
+# --- API Layer (The Service Interface) ---
+fastapi>=0.110.0             # For the API Layer (Stage 2 Target #2)
+uvicorn>=0.29.0              # High-performance ASGI server
+python-multipart             # Required for PDF uploads via API
+
+# --- Validation & Infrastructure (Hardening) ---
+pydantic-settings>=2.2.1     # Separate env validation from data schemas
+google-genai>=0.8.0   # DIRECT SDK: Essential for the "Judge" and low-level control
+
+# --- API & Service Layer (The Engine) ---
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0   # 'standard' includes high-speed loop for 2026 async
+python-multipart            # Essential for handling PDF uploads via API
+
+# --- Frontend (Added for the API-UI Bridge) ---
+streamlit>=1.35.0
+requests>=2.31.0

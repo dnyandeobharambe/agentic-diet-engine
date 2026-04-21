@@ -1,0 +1,41 @@
+name: Deploy Nutrition RAG to Hugging Face
+
+on:
+  push:
+    branches: [main]
+    # Only trigger if changes are made to this specific project's folders
+    paths:
+      - 'src/**'
+      - 'deployments/rag_app/**'
+      - 'data/**'
+      - '.github/workflows/deploy-nutrition-rag.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Architect's Deployment Prep
+        run: |
+          # 1. Promote the project-specific Dockerfile to the root for HF compatibility
+          cp deployments/rag_app/Dockerfile Dockerfile
+          
+          # 2. Setup a temporary Git identity for the sync
+          git config --global user.email "bot@github.com"
+          git config --global user.name "GitHub Action Bot"
+          
+          # 3. Commit the change locally so it exists in the 'main' branch being pushed
+          git add Dockerfile
+          git commit -m "Internal: Prepare root Dockerfile for Space deployment"
+
+      - name: Force Push to Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          # Replace 'dnyandeobhar' and 'agentic-diet-engine' with your exact Space details
+          git push --force https://dnyandeobhar:$HF_TOKEN@huggingface.co/spaces/dnyandeobhar/agentic-diet-engine main
+          
