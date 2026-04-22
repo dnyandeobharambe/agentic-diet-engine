@@ -24,7 +24,7 @@ This project deploys a dual-process container running:
 * **Runtime:** Custom Docker container (Python 3.11-slim).
 * **Vector Store:** Local ChromaDB (`chroma_db/`) pre-baked for warm-start performance.
 * **Orchestration:** Multi-agent resilient architecture for agentic workflows.
-
+```mermaid
 graph TD
     subgraph Local_Dev [Local Environment - NPU/32GB]
         A[Raw PDFs/Docs] --> B[Embedding Engine]
